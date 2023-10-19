@@ -12,15 +12,16 @@ return new class extends Migration {
     {
         Schema::create('carousel_items', function (Blueprint $table) {
             $table->id('carousel_item_id');
+            $table->string('carousel_name')->nullable();
+            $table->string('image_path');
+            $table->string('description')->nullable();
 
             $table->timestamps();
         });
 
         Schema::table('carousel_items', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
-            $table->string('carousel_name')->nullable();
-            $table->string('image_path');
-            $table->string('description')->nullable();
+
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
